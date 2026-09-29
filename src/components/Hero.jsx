@@ -292,7 +292,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               >
                 Explore My Work
               </a>
-              <a
+              {/* <a
                 href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -300,7 +300,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               >
                 <span>View Resume</span>
                 <span className="text-[#00f59b] font-bold text-sm">↗</span>
-              </a>
+              </a> */}
             </motion.div>
 
           </div>
