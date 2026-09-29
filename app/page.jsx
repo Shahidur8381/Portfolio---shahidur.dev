@@ -4,11 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import {
   About,
-  Contact,
   Feedbacks,
   Navbar,
   Works,
-  StarsCanvas,
   SocialIcons,
   CustomCursor,
   Footer,
@@ -36,6 +34,9 @@ const TechStack = dynamic(
   { ssr: false }
 );
 
+const Contact = dynamic(() => import("../src/components/Contact"), { ssr: false });
+const StarsCanvas = dynamic(() => import("../src/components/canvas").then(mod => mod.StarsCanvas), { ssr: false });
+
 export default function Home() {
   // SSR-safe: always false on server. Becomes true either after intro OR immediately if returning.
   const [websiteReady, setWebsiteReady] = useState(false);
@@ -61,13 +62,17 @@ export default function Home() {
       if (window.location.hash) {
         const hash = window.location.hash;
         setTimeout(() => {
-          const target = document.querySelector(hash);
-          if (target) {
-            if (window.__lenis) {
-              window.__lenis.scrollTo(target, { offset: -30, duration: 1.2 });
-            } else {
-              target.scrollIntoView({ behavior: "smooth" });
+          try {
+            const target = document.querySelector(hash);
+            if (target) {
+              if (window.__lenis) {
+                window.__lenis.scrollTo(target, { offset: -30, duration: 1.2 });
+              } else {
+                target.scrollIntoView({ behavior: "smooth" });
+              }
             }
+          } catch (e) {
+            console.warn("Invalid hash selector:", e);
           }
         }, 120);
       } else {
@@ -76,10 +81,14 @@ export default function Home() {
           const y = parseInt(savedScroll, 10);
           if (!isNaN(y) && y > 0) {
             setTimeout(() => {
-              if (window.__lenis) {
-                window.__lenis.scrollTo(y, { immediate: true });
-              } else {
-                window.scrollTo({ top: y, behavior: "instant" });
+              try {
+                if (window.__lenis) {
+                  window.__lenis.scrollTo(y, { immediate: true });
+                } else {
+                  window.scrollTo({ top: y, behavior: "instant" });
+                }
+              } catch (e) {
+                console.warn("Scroll restore failed:", e);
               }
             }, 50);
           }
@@ -121,7 +130,7 @@ export default function Home() {
   }, [websiteReady]);
 
   return (
-    <div className='relative z-0 bg-[#070a08] min-h-screen selection:bg-[#00f59b] selection:text-black'>
+    <div className='relative z-0 bg-[#070a08] min-h-screen selection:bg-[#00f59b] selection:text-black overflow-x-hidden w-full'>
       <CustomCursor />
 
       {/* Navbar / background: fade in after intro on first visit, instant on return */}

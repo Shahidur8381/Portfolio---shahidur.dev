@@ -53,17 +53,17 @@ const ProjectCard = ({
   };
 
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)} className="w-full sm:w-[360px] flex">
       <Tilt
         options={{
           max: 45,
           scale: 1,
           speed: 450,
         }}
-        className='bg-[#0b140f]/90 backdrop-blur-xl p-5 rounded-2xl sm:w-[360px] w-full border border-[#10b981]/25 hover:border-[#00f59b]/60 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(0,245,155,0.25)] transition-all duration-300 flex flex-col justify-between'
+        className='bg-[#0b140f]/90 backdrop-blur-xl p-4 xs:p-5 rounded-2xl w-full border border-[#10b981]/25 hover:border-[#00f59b]/60 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(0,245,155,0.25)] transition-all duration-300 flex flex-col justify-between'
       >
         <div>
-          <div className='relative w-full h-[230px] rounded-2xl overflow-hidden bg-[#070d09] group'>
+          <div className='relative w-full h-[190px] xs:h-[210px] sm:h-[230px] rounded-2xl overflow-hidden bg-[#070d09] group'>
             <img
               src={imgSrc || DEFAULT_PROJECT_PLACEHOLDER}
               alt={projectName}
@@ -96,26 +96,26 @@ const ProjectCard = ({
                   <img
                     src={github}
                     alt='source code'
-                    className='w-1/2 h-1/2 object-contain'
+                    className='w-5 h-5 shrink-0 object-contain'
                   />
                 </div>
               )}
             </div>
           </div>
 
-          <div className='mt-5'>
-            <h3 className='text-white font-bold text-[24px] tracking-wide'>{projectName}</h3>
-            <p className='mt-2 text-[#94a3b8] text-[14px] leading-relaxed'>{description}</p>
+          <div className='mt-4 sm:mt-5'>
+            <h3 className='text-white font-bold text-lg sm:text-[24px] tracking-wide'>{projectName}</h3>
+            <p className='mt-1.5 sm:mt-2 text-[#94a3b8] text-[13px] sm:text-[14px] leading-relaxed'>{description}</p>
           </div>
 
-          <div className='mt-4 flex flex-wrap gap-2'>
+          <div className='mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2'>
             {(tags || []).map((tag, tagIdx) => {
               const tagName = typeof tag === "string" ? tag : tag?.name;
               const tagColor = typeof tag === "string" ? "text-[#a7f3d0]" : tag?.color || "text-[#a7f3d0]";
               return (
                 <p
                   key={`${projectName}-${tagName || tagIdx}`}
-                  className={`text-[13px] font-medium ${tagColor}`}
+                  className={`text-[12px] sm:text-[13px] font-medium ${tagColor}`}
                 >
                   #{tagName}
                 </p>
@@ -125,14 +125,14 @@ const ProjectCard = ({
         </div>
 
         {/* Action Links Bar: Live Demo & GitHub Repo */}
-        <div className='mt-6 pt-4 border-t border-[#10b981]/15 flex items-center gap-3'>
+        <div className='mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-[#10b981]/15 flex items-center gap-2 sm:gap-3'>
           {demoLink ? (
             <a
               href={demoLink}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className='flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#00f59b]/15 to-[#10b981]/10 border border-[#00f59b]/40 hover:border-[#00f59b] hover:bg-[#00f59b]/25 hover:shadow-[0_0_20px_rgba(0,245,155,0.35)] text-[#00f59b] text-[13px] font-semibold transition-all duration-300 group/btn'
+              className='flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl bg-gradient-to-r from-[#00f59b]/15 to-[#10b981]/10 border border-[#00f59b]/40 hover:border-[#00f59b] hover:bg-[#00f59b]/25 hover:shadow-[0_0_20px_rgba(0,245,155,0.35)] text-[#00f59b] text-[12px] sm:text-[13px] font-semibold transition-all duration-300 group/btn whitespace-nowrap min-h-[40px]'
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f59b] opacity-75"></span>
@@ -142,7 +142,7 @@ const ProjectCard = ({
               <span className="text-xs transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">↗</span>
             </a>
           ) : (
-            <div className='flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#09120c]/60 border border-white/5 text-[#64748b] text-[12px] font-medium'>
+            <div className='flex-1 flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl bg-[#09120c]/60 border border-white/5 text-[#64748b] text-[11px] sm:text-[12px] font-medium min-h-[40px]'>
               <span className="w-1.5 h-1.5 rounded-full bg-[#64748b]/50"></span>
               <span>In Staging</span>
             </div>
@@ -154,9 +154,9 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className='flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#0b140f] border border-white/10 hover:border-[#00f59b]/50 hover:bg-[#102017] hover:text-white text-[#cbd5e1] text-[13px] font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.5)]'
+              className='flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl bg-[#0b140f] border border-white/10 hover:border-[#00f59b]/50 hover:bg-[#102017] hover:text-white text-[#cbd5e1] text-[12px] sm:text-[13px] font-medium transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.5)] min-h-[40px]'
             >
-              <img src={github} alt="github" className="w-4 h-4 object-contain opacity-80" />
+              <img src={github} alt="github" className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 object-contain opacity-80" />
               <span>GitHub</span>
             </a>
           ) : null}
@@ -181,7 +181,7 @@ const Works = () => {
       <div className='w-full flex'>
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className='mt-3 text-[#94a3b8] text-[17px] max-w-3xl leading-[30px]'
+          className='mt-3 text-[#94a3b8] text-sm sm:text-[17px] max-w-3xl leading-relaxed sm:leading-[30px]'
         >
           Following projects showcase my skills and experience through
           real-world production applications. Each project is highlighted with
@@ -190,7 +190,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
+      <div className='mt-10 sm:mt-20 flex flex-wrap gap-5 sm:gap-7 justify-center sm:justify-start'>
         {projectList.map((project, index) => (
           <ProjectCard
             key={`project-${project.id || project.slug || index}`}
@@ -201,7 +201,7 @@ const Works = () => {
       </div>
 
       {/* Minimal Supernatural Button */}
-      <div className='mt-14 w-full flex justify-center'>
+      <div className='mt-10 sm:mt-14 w-full flex justify-center'>
         <a
           href="/projects"
           target="_blank"
@@ -212,7 +212,7 @@ const Works = () => {
               sessionStorage.setItem("portfolio_intro_seen", "true");
             }
           }}
-          className='group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#070f0a]/90 hover:bg-[#0c1a11] border border-[#10b981]/35 hover:border-[#00f59b] text-[13px] text-white transition-all duration-300 shadow-[0_0_15px_rgba(0,245,155,0.12)] hover:shadow-[0_0_30px_rgba(0,245,155,0.3)]'
+          className='group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#070f0a]/90 hover:bg-[#0c1a11] border border-[#10b981]/35 hover:border-[#00f59b] text-xs sm:text-[13px] text-white transition-all duration-300 shadow-[0_0_15px_rgba(0,245,155,0.12)] hover:shadow-[0_0_30px_rgba(0,245,155,0.3)] min-h-[44px]'
         >
           <span className='w-1.5 h-1.5 rounded-full bg-[#00f59b] animate-ping' />
 

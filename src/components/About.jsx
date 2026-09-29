@@ -85,7 +85,7 @@ const iconMap = {
 const CapabilityCard = ({ number, title, description, tech, icon: Icon, isPrimary, index }) => (
   <motion.div
     variants={fadeIn("up", "spring", index * 0.2 + 0.3, 0.8)}
-    className={`group relative flex-1 min-w-[220px] rounded-[24px] p-6 sm:p-7
+    className={`group relative flex-1 w-full rounded-[24px] p-5 sm:p-7
       bg-white/[0.04] backdrop-blur-[24px] backdrop-saturate-[130%]
       border border-white/[0.08]
       shadow-[0_8px_32px_rgba(0,0,0,0.4)]
@@ -99,27 +99,27 @@ const CapabilityCard = ({ number, title, description, tech, icon: Icon, isPrimar
     <div className="absolute inset-x-6 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent rounded-full" />
 
     {/* Number */}
-    <span className="text-[#00f59b]/60 text-xs font-mono tracking-widest mb-5 block">
+    <span className="text-[#00f59b]/60 text-xs font-mono tracking-widest mb-4 sm:mb-5 block">
       {number}
     </span>
 
     {/* Icon */}
-    <div className="mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300 group-hover:translate-y-[-2px] transition-transform">
+    <div className="mb-4 sm:mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300 group-hover:translate-y-[-2px] transition-transform">
       <Icon />
     </div>
 
     {/* Title */}
-    <h3 className="text-white text-lg font-bold tracking-wide mb-3 leading-snug">
+    <h3 className="text-white text-base sm:text-lg font-bold tracking-wide mb-2 sm:mb-3 leading-snug">
       {title}
     </h3>
 
     {/* Description */}
-    <p className="text-[#8b9bb4] text-[13px] leading-relaxed mb-5">
+    <p className="text-[#8b9bb4] text-[12.5px] sm:text-[13px] leading-relaxed mb-4 sm:mb-5">
       {description}
     </p>
 
     {/* Tech line */}
-    <p className="text-[#5a6b7f] text-[11px] font-medium tracking-wider uppercase group-hover:text-[#6b7f94] transition-colors duration-300">
+    <p className="text-[#5a6b7f] text-[10.5px] sm:text-[11px] font-medium tracking-wider uppercase group-hover:text-[#6b7f94] transition-colors duration-300">
       {tech}
     </p>
 
@@ -148,7 +148,7 @@ const About = () => {
     <div className="flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-14 lg:-mr-12 xl:-mr-24 2xl:-mr-40">
 
       {/* ── LEFT COLUMN: Content ── */}
-      <div className="flex-1 lg:w-[64%]">
+      <div className="flex-1 w-full lg:w-[64%]">
 
         {/* Eyebrow */}
         <motion.div variants={textVariant()}>
@@ -161,13 +161,13 @@ const About = () => {
         {/* Description */}
         <motion.p
           variants={fadeIn("", "", 0.15, 1)}
-          className="mt-5 text-[#8b9bb4] text-base sm:text-[17px] max-w-2xl leading-[1.8]"
+          className="mt-4 sm:mt-5 text-[#8b9bb4] text-sm sm:text-base md:text-[17px] max-w-2xl leading-[1.8]"
         >
           {personal?.aboutIntro}
         </motion.p>
 
-        {/* Capability Cards */}
-        <div className="mt-12 flex flex-col sm:flex-row gap-5">
+        {/* Capability Cards: Stack on mobile/tablet, 3 columns on desktop */}
+        <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
           {capabilities.map((cap, index) => (
             <CapabilityCard key={cap.number} index={index} {...cap} />
           ))}
@@ -177,11 +177,11 @@ const About = () => {
       {/* ── RIGHT COLUMN: Portrait ── */}
       <motion.div
         variants={fadeIn("left", "spring", 0.5, 1)}
-        className="w-full lg:w-[36%] flex justify-center lg:justify-end"
+        className="w-full lg:w-[36%] flex justify-center lg:justify-end mt-4 lg:mt-0"
       >
-        <div className="relative group w-[280px] sm:w-[320px] lg:w-full lg:max-w-[460px] aspect-[3/4.2]">
+        <div className="relative group w-[260px] xs:w-[280px] sm:w-[320px] lg:w-full max-w-full lg:max-w-[460px] aspect-[3/4.2]">
           {/* Ambient glow behind portrait */}
-          <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-[#00f59b]/8 via-transparent to-[#10b981]/5 blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+          <div className="absolute -inset-2 sm:-inset-6 rounded-[32px] bg-gradient-to-br from-[#00f59b]/8 via-transparent to-[#10b981]/5 blur-xl sm:blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
 
           {/* Portrait container */}
           <div

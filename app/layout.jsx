@@ -76,8 +76,14 @@ export const metadata = {
     },
   },
   icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png" },
+    ],
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -175,7 +181,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-primary">
+      <body className="bg-primary overflow-x-hidden" suppressHydrationWarning>
         <SmoothScroll />
         {children}
       </body>

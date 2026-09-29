@@ -130,12 +130,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
+    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-8 sm:gap-10 overflow-hidden">
 
       {/* ── LEFT: Contact Form ── */}
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-[#0b140f]/85 backdrop-blur-2xl p-8 rounded-2xl border border-[#10b981]/25 shadow-[0_0_40px_rgba(0,245,155,0.08)]"
+        className="flex-[0.75] bg-[#0b140f]/85 backdrop-blur-2xl p-5 xs:p-6 sm:p-8 rounded-2xl border border-[#10b981]/25 shadow-[0_0_40px_rgba(0,245,155,0.08)]"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -143,7 +143,7 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="mt-10 flex flex-col gap-6"
+          className="mt-6 sm:mt-10 flex flex-col gap-4 sm:gap-6"
         >
           {/* Honeypot field for bot spam protection (hidden from humans) */}
           <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
@@ -159,7 +159,7 @@ const Contact = () => {
             />
           </div>
           <label className="flex flex-col">
-            <span className="text-white/80 text-sm font-medium mb-2">Your Name</span>
+            <span className="text-white/80 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Your Name</span>
             <input
               type="text"
               name="name"
@@ -168,12 +168,12 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your good name?"
               required
-              className="bg-[#070d09]/80 py-3.5 px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-sm"
+              className="bg-[#070d09]/80 py-3 sm:py-3.5 px-4 sm:px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-xs sm:text-sm"
             />
           </label>
 
           <label className="flex flex-col">
-            <span className="text-white/80 text-sm font-medium mb-2">Your Email</span>
+            <span className="text-white/80 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Your Email</span>
             <input
               type="email"
               name="email"
@@ -182,15 +182,15 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your email address?"
               required
-              className="bg-[#070d09]/80 py-3.5 px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-sm"
+              className="bg-[#070d09]/80 py-3 sm:py-3.5 px-4 sm:px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-xs sm:text-sm"
             />
           </label>
 
           <label className="flex flex-col">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-white/80 text-sm font-medium">Message</span>
+            <div className="flex justify-between items-center mb-1.5 sm:mb-2">
+              <span className="text-white/80 text-xs sm:text-sm font-medium">Message</span>
               <span
-                className={`text-xs transition-colors ${
+                className={`text-[11px] sm:text-xs transition-colors ${
                   form.message.length >= 5000
                     ? "text-[#00f59b] font-semibold"
                     : form.message.length > 4500
@@ -202,14 +202,14 @@ const Contact = () => {
               </span>
             </div>
             <textarea
-              rows={6}
+              rows={5}
               name="message"
               maxLength={5000}
               value={form.message}
               onChange={handleChange}
               placeholder="What would you like to build together?"
               required
-              className="bg-[#070d09]/80 py-3.5 px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-sm resize-none"
+              className="bg-[#070d09]/80 py-3 sm:py-3.5 px-4 sm:px-5 placeholder:text-[#475569] text-white rounded-xl outline-none border border-[#10b981]/20 focus:border-[#00f59b] focus:shadow-[0_0_12px_rgba(0,245,155,0.25)] transition-all text-xs sm:text-sm resize-none"
             />
           </label>
 
@@ -217,7 +217,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={loading}
-              className="relative group overflow-hidden bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#059669] py-3 px-8 rounded-xl outline-none text-[#070a08] font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(0,245,155,0.35)] hover:shadow-[0_0_30px_rgba(0,245,155,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full sm:w-auto relative group overflow-hidden bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#059669] py-3 px-8 rounded-xl outline-none text-[#070a08] font-bold text-xs sm:text-sm tracking-wide shadow-[0_0_20px_rgba(0,245,155,0.35)] hover:shadow-[0_0_30px_rgba(0,245,155,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer min-h-[44px]"
             >
               <span className="relative z-10">
                 {loading ? "Sending..." : "Send Message →"}
@@ -230,7 +230,7 @@ const Contact = () => {
               <motion.p
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-[#00f59b] text-sm font-medium"
+                className="text-[#00f59b] text-xs sm:text-sm font-medium"
               >
                 ✓ Message sent! I'll get back to you soon.
               </motion.p>
@@ -239,7 +239,7 @@ const Contact = () => {
               <motion.p
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-red-400 text-sm"
+                className="text-red-400 text-xs sm:text-sm"
               >
                 ✗ {errorMessage || (
                   <>
@@ -262,7 +262,7 @@ const Contact = () => {
       {/* ── RIGHT: Personalized 3D Globe ── */}
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className="xl:flex-1 xl:h-auto md:h-[550px] h-[380px]"
+        className="xl:flex-1 xl:h-auto md:h-[500px] sm:h-[400px] h-[300px]"
       >
         <PersonalGlobeCanvas />
       </motion.div>

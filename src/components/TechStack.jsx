@@ -56,12 +56,7 @@ const TechStack = () => {
             ROW 1: Full-Stack Web, Databases & APIs
             ========================================== */}
         <div className="marquee-row-block">
-          <div className="marquee-row-header">
-            <div className="row-badge row-mint">
-              <span className="row-badge-dot"></span>
-              <span>Full-Stack Web Development, Databases & Systems</span>
-            </div>
-          </div>
+          
 
           <div className="marquee-viewport">
             <div className="marquee-track scroll-right-1">
@@ -76,12 +71,7 @@ const TechStack = () => {
             ROW 2: Cloud, DevOps & Machine Learning / AI
             ========================================== */}
         <div className="marquee-row-block">
-          <div className="marquee-row-header">
-            <div className="row-badge row-emerald">
-              <span className="row-badge-dot"></span>
-              <span>Cloud Infrastructure, DevOps & Machine Learning / AI</span>
-            </div>
-          </div>
+          
 
           <div className="marquee-viewport">
             <div className="marquee-track scroll-left-2">
@@ -96,12 +86,7 @@ const TechStack = () => {
             ROW 3: Telegram MiniApps, TON & Web3 Smart Contracts
             ========================================== */}
         <div className="marquee-row-block">
-          <div className="marquee-row-header">
-            <div className="row-badge row-teal">
-              <span className="row-badge-dot"></span>
-              <span>Telegram Mini Apps, TON & Web3 Smart Contracts</span>
-            </div>
-          </div>
+          
 
           <div className="marquee-viewport">
             <div className="marquee-track scroll-right-3">

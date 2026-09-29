@@ -376,3 +376,63 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .techstack-section {
+    padding: 45px 0 40px 0;
+  }
+  .techstack-header {
+    padding: 0 16px;
+    margin-bottom: 30px;
+  }
+  .techstack-header p {
+    font-size: 13.5px;
+  }
+  .tech-minimal-card {
+    width: 200px;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .card-icon-box {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+  .card-title {
+    font-size: 13.5px;
+  }
+  .card-category {
+    font-size: 10px;
+  }
+  .marquee-row-header {
+    padding: 0 16px;
+  }
+  .row-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .tech-pillars {
+    padding: 0 14px;
+    gap: 14px;
+  }
+  .pillar-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+  .pillar-card h4 {
+    font-size: 16px;
+  }
+  .pillar-card p {
+    font-size: 13px;
+  }
+  .pillar-tags {
+    gap: 5px;
+  }
+  .pillar-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}

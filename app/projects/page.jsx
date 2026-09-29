@@ -135,11 +135,11 @@ function ProjectCard({ project, index }) {
           scale: 1.01,
           speed: 400,
         }}
-        className="h-full bg-[#0b140f]/80 backdrop-blur-md p-5 rounded-2xl border border-[#10b981]/20 hover:border-[#00f59b]/60 shadow-[0_8px_25px_rgba(0,0,0,0.4)] hover:shadow-[0_0_25px_rgba(0,245,155,0.2)] transition-all duration-300 flex flex-col justify-between"
+        className="h-full bg-[#0b140f]/80 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-[#10b981]/20 hover:border-[#00f59b]/60 shadow-[0_8px_25px_rgba(0,0,0,0.4)] hover:shadow-[0_0_25px_rgba(0,245,155,0.2)] transition-all duration-300 flex flex-col justify-between"
       >
         <div>
           {/* Project Image */}
-          <div className="relative w-full h-[210px] rounded-xl overflow-hidden bg-[#070d09] group">
+          <div className="relative w-full h-[180px] xs:h-[210px] rounded-xl overflow-hidden bg-[#070d09] group">
             <img
               src={imgSrc || DEFAULT_PROJECT_PLACEHOLDER}
               alt={projectName}
@@ -323,7 +323,7 @@ export default function AllProjectsPage() {
       <SpaceBackground />
 
       {/* Minimal Header Nav */}
-      <header className="relative z-20 max-w-6xl mx-auto px-6 py-5 flex items-center justify-between border-b border-white/10 backdrop-blur-md bg-[#070a08]/80">
+      <header className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between border-b border-white/10 backdrop-blur-md bg-[#070a08]/80">
         <Link
           href="/#projects"
           className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#94a3b8] hover:text-[#00f59b] transition-colors"
@@ -338,7 +338,7 @@ export default function AllProjectsPage() {
       </header>
 
       {/* Main Container */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 py-10">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         {/* Title */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 border-b border-white/10">
           <div>
@@ -348,7 +348,7 @@ export default function AllProjectsPage() {
                 ✦ Archives
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold tracking-tight">
               All Projects & Creations
             </h1>
           </div>

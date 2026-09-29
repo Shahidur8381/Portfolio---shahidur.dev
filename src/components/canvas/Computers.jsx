@@ -6,7 +6,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile, onLoaded }) => {
+const Computers = ({ deviceMode, onLoaded }) => {
   const computer = useGLTF("/desktop_pc/scene.gltf");
   const modelRef = useRef();
 
@@ -27,6 +27,16 @@ const Computers = ({ isMobile, onLoaded }) => {
     }
   });
 
+  const isMobile = deviceMode === "mobile";
+  const isTablet = deviceMode === "tablet";
+
+  const scale = isMobile ? 0.48 : isTablet ? 0.56 : 0.62;
+  const position = isMobile
+    ? [0, -3.8, -2.2]
+    : isTablet
+    ? [1.2, -3.9, -1.8]
+    : [3, -4.0, -1.5];
+
   return (
     <mesh>
       {/* Front key light to brightly illuminate the monitors, desk and keyboard */}
@@ -46,8 +56,8 @@ const Computers = ({ isMobile, onLoaded }) => {
       <group ref={modelRef}>
         <primitive
           object={computer.scene}
-          scale={isMobile ? 0.58 : 0.62}
-          position={isMobile ? [0, -3.7, -2.2] : [3, -4.0, -1.5]}
+          scale={scale}
+          position={position}
           rotation={[-0.01, -0.85, -0.05]}
         />
       </group>
@@ -56,20 +66,23 @@ const Computers = ({ isMobile, onLoaded }) => {
 };
 
 const ComputersCanvas = ({ onModelLoaded }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [deviceMode, setDeviceMode] = useState("desktop");
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setDeviceMode("mobile");
+      } else if (width < 1024) {
+        setDeviceMode("tablet");
+      } else {
+        setDeviceMode("desktop");
+      }
     };
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -88,7 +101,7 @@ const ComputersCanvas = ({ onModelLoaded }) => {
           minPolarAngle={Math.PI / 2}
           target={[0, -1.8, 0]}
         />
-        <Computers isMobile={isMobile} onLoaded={onModelLoaded} />
+        <Computers deviceMode={deviceMode} onLoaded={onModelLoaded} />
       </Suspense>
 
       <Preload all />

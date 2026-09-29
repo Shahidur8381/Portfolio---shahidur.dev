@@ -53,7 +53,7 @@ const ExperienceCard = ({ experience }) => {
       }}
       contentArrowStyle={{ borderRight: "7px solid rgba(255, 255, 255, 0.05)" }}
       date={
-        <span className="text-[#8b9bb4] font-mono tracking-widest text-xs lg:text-sm lg:px-5 py-2 bg-[#050907]/80 rounded-full border border-[#00f59b]/20 inline-block mx-4 shadow-[0_0_10px_rgba(0,245,155,0.1)]">
+        <span className="text-[#8b9bb4] font-mono tracking-widest text-[11px] sm:text-xs lg:text-sm px-3 sm:px-5 py-1 sm:py-2 bg-[#050907]/80 rounded-full border border-[#00f59b]/20 inline-block my-1 sm:my-0 sm:mx-4 shadow-[0_0_10px_rgba(0,245,155,0.1)]">
           {item.date}
         </span>
       }
@@ -67,28 +67,28 @@ const ExperienceCard = ({ experience }) => {
         fontSize: "24px"
       }}
       icon={
-        <div className="flex justify-center items-center w-full h-full text-2xl">
+        <div className="flex justify-center items-center w-full h-full text-xl sm:text-2xl">
           <ExperienceIcon item={item} />
         </div>
       }
     >
       <div className="relative z-10 group">
-        <h3 className="text-white text-[24px] font-bold tracking-wide leading-snug">{item.title}</h3>
+        <h3 className="text-white text-lg sm:text-[24px] font-bold tracking-wide leading-snug">{item.title}</h3>
         <p
-          className="text-[#00f59b] text-[16px] font-semibold mt-1"
+          className="text-[#00f59b] text-sm sm:text-[16px] font-semibold mt-0.5 sm:mt-1"
           style={{ margin: 0 }}
         >
           {item.companyName}
         </p>
 
-        <ul className="mt-6 list-none space-y-4">
+        <ul className="mt-4 sm:mt-6 list-none space-y-3 sm:space-y-4">
           {item.points.map((point, index) => (
             <li
               key={`experience-point-${index}`}
-              className="text-[#8b9bb4] text-[14px] lg:text-[15px] tracking-wide leading-relaxed flex items-start"
+              className="text-[#8b9bb4] text-[13px] sm:text-[14px] lg:text-[15px] tracking-wide leading-relaxed flex items-start"
             >
-              <span className="text-[#00f59b] mr-4 mt-1 font-bold">▹</span>
-              {point}
+              <span className="text-[#00f59b] mr-3 sm:mr-4 mt-0.5 sm:mt-1 font-bold shrink-0">▹</span>
+              <span>{point}</span>
             </li>
           ))}
         </ul>
@@ -113,7 +113,7 @@ const Experience = () => {
         </h2>
       </motion.div>
 
-      <div className="mt-20 flex flex-col relative z-10 lg:w-[85%] lg:-ml-8">
+      <div className="mt-12 sm:mt-20 flex flex-col relative z-10 w-full lg:w-[85%] lg:-ml-8">
         <VerticalTimeline layout="1-column-left" lineColor="rgba(0, 245, 155, 0.3)">
           {experienceList.map((experience, index) => (
             <ExperienceCard

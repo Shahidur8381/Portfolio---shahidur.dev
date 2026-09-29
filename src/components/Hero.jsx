@@ -171,7 +171,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               <div
                 role="heading"
                 aria-level={2}
-                className='text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-white'
+                className='text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-white'
               >
                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#34d399] drop-shadow-[0_0_35px_rgba(0,245,155,0.45)]'>
                   {salamText}
@@ -184,7 +184,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className='text-lg sm:text-2xl md:text-3xl text-[#a7f3d0] font-medium tracking-widest mt-5 drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]'
+                  className='text-sm xs:text-base sm:text-2xl md:text-3xl text-[#a7f3d0] font-medium tracking-widest mt-4 sm:mt-5 drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]'
                 >
                   (peace be upon you)
                 </motion.p>
@@ -197,16 +197,16 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
       {/* =========================================================
           HERO NAME CONTAINER:
           Centered in viewport during typing, then smoothly glides
-          to top-[105px] hero position and scales to hero size!
+          to docked hero position and scales to hero size!
           ========================================================= */}
       <div
         className={`absolute inset-x-0 ${
-          isDocked ? "top-[105px]" : "top-1/2 -translate-y-1/2"
+          isDocked ? "top-[80px] xs:top-[90px] sm:top-[105px]" : "top-1/2 -translate-y-1/2"
         } max-w-7xl mx-auto ${styles.paddingX} transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 pointer-events-none`}
       >
         <div
           className={`flex flex-row items-start ${
-            isDocked ? "justify-start w-1/2" : "justify-center w-full"
+            isDocked ? "justify-start lg:w-1/2 w-full" : "justify-center w-full"
           } gap-5 transition-all duration-1000`}
         >
           {/* Heading and Content */}
@@ -217,7 +217,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               initial={{ opacity: 0, x: -20 }}
               animate={isDocked ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-[#00f59b] font-mono text-xs sm:text-sm md:text-base mb-1 tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,245,155,0.5)]"
+              className="text-[#00f59b] font-mono text-[11px] xs:text-xs sm:text-sm md:text-base mb-1 tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,245,155,0.5)]"
             >
               I build. I break. I rebuild.
             </motion.p>
@@ -226,22 +226,22 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
             <h1
               className={`font-black tracking-wide transition-all duration-1000 ${
                 isDocked
-                  ? "lg:text-[64px] sm:text-[48px] xs:text-[40px] text-[32px] lg:leading-[72px]"
-                  : "text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight text-white text-center"
+                  ? "lg:text-[64px] sm:text-[48px] xs:text-[36px] text-[24px] min-[360px]:text-[27px] lg:leading-[72px] sm:leading-[54px] xs:leading-[44px] leading-[32px]"
+                  : "text-2xl min-[360px]:text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight text-white text-center"
               }`}
             >
               {isDocked ? (
                 <>
-                  <span className='block text-xl sm:text-2xl text-[#94a3b8] font-medium tracking-normal mb-1'>
+                  <span className='block text-base sm:text-xl md:text-2xl text-[#94a3b8] font-medium tracking-normal mb-0.5 sm:mb-1 whitespace-nowrap'>
                     Hi, I'm
                   </span>
-                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#34d399] drop-shadow-[0_0_25px_rgba(0,245,155,0.4)] whitespace-nowrap'>
+                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#34d399] drop-shadow-[0_0_25px_rgba(0,245,155,0.4)] whitespace-nowrap inline-block'>
                     {personal?.name || "Shahidur Rahman"}
                   </span>
                 </>
               ) : (
                 <>
-                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#34d399] drop-shadow-[0_0_35px_rgba(0,245,155,0.5)]'>
+                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] via-[#10b981] to-[#34d399] drop-shadow-[0_0_35px_rgba(0,245,155,0.5)] whitespace-nowrap inline-block'>
                     {nameText}
                   </span>
                   <span className='text-[#00f59b] ml-0.5' style={{ fontWeight: 100, animation: 'blink 0.6s step-end infinite' }}>|</span>
@@ -258,9 +258,9 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
                   : { opacity: 0, y: 15 }
               }
               transition={{ duration: 0.6, delay: 0.45 }}
-              className='mt-1 min-h-[32px] sm:min-h-[40px] flex items-center'
+              className='mt-1 min-h-[28px] sm:min-h-[40px] flex items-center'
             >
-              <p className='text-lg sm:text-xl md:text-2xl text-white font-medium tracking-wide'>
+              <p className='text-base xs:text-lg sm:text-xl md:text-2xl text-white font-medium tracking-wide'>
                 I am{" "}
                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] to-[#34d399] drop-shadow-[0_0_14px_rgba(0,245,155,0.6)] font-bold'>
                   {roleText}
@@ -274,7 +274,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               initial={{ opacity: 0, y: 15 }}
               animate={isDocked ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className={`${styles.heroSubText} mt-2 text-[#94a3b8] max-w-xl text-sm sm:text-base leading-relaxed`}
+              className={`${styles.heroSubText} mt-2 text-[#94a3b8] max-w-xl text-xs sm:text-base leading-relaxed`}
             >
               I don't just build websites, I build products.
             </motion.p>
@@ -284,11 +284,11 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
               initial={{ opacity: 0, y: 15 }}
               animate={isDocked ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.6, delay: 0.75 }}
-              className="mt-8 flex flex-wrap items-center gap-4 pointer-events-auto"
+              className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4 pointer-events-auto"
             >
               <a
                 href="#projects"
-                className="px-7 py-3 rounded-full border border-[#00f59b]/40 text-[#00f59b] font-semibold text-xs sm:text-sm hover:bg-[#00f59b]/10 hover:border-[#00f59b]/70 hover:shadow-[0_0_20px_rgba(0,245,155,0.15)] hover:scale-105 transition-all duration-300"
+                className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-[#00f59b]/40 text-[#00f59b] font-semibold text-xs sm:text-sm hover:bg-[#00f59b]/10 hover:border-[#00f59b]/70 hover:shadow-[0_0_20px_rgba(0,245,155,0.15)] hover:scale-105 active:scale-95 transition-all duration-300 min-h-[42px] flex items-center justify-center"
               >
                 Explore My Work
               </a>
@@ -296,7 +296,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
                 href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-7 py-3 rounded-full border border-white/20 text-[#e2e8f0] font-semibold text-xs sm:text-sm hover:border-[#00f59b]/60 hover:text-white hover:bg-white/[0.04] hover:shadow-[0_0_15px_rgba(0,245,155,0.15)] hover:scale-105 transition-all duration-300 flex items-center gap-2"
+                className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-white/20 text-[#e2e8f0] font-semibold text-xs sm:text-sm hover:border-[#00f59b]/60 hover:text-white hover:bg-white/[0.04] hover:shadow-[0_0_15px_rgba(0,245,155,0.15)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 min-h-[42px]"
               >
                 <span>View Resume</span>
                 <span className="text-[#00f59b] font-bold text-sm">↗</span>
@@ -329,22 +329,22 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
 
       {/* Scroll Down Indicator (Only revealed when website is ready) */}
       <div
-        className={`absolute xs:bottom-10 bottom-28 w-full flex justify-center items-center z-20 pointer-events-auto transition-opacity duration-1000 ${
+        className={`absolute xs:bottom-8 bottom-14 w-full flex justify-center items-center z-20 pointer-events-auto transition-opacity duration-1000 ${
           websiteReady ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-2 border-[#00f59b]/50 shadow-[0_0_20px_rgba(0,245,155,0.25)] backdrop-blur-sm bg-[#070a08]/40 flex justify-center items-start p-2 hover:border-[#00f59b] transition-colors'>
+        <a href='#about' aria-label="Scroll to About section">
+          <div className='w-[32px] sm:w-[35px] h-[56px] sm:h-[64px] rounded-3xl border-2 border-[#00f59b]/50 shadow-[0_0_20px_rgba(0,245,155,0.25)] backdrop-blur-sm bg-[#070a08]/40 flex justify-center items-start p-1.5 sm:p-2 hover:border-[#00f59b] transition-colors'>
             <motion.div
               animate={{
-                y: [0, 24, 0],
+                y: [0, 20, 0],
               }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
                 repeatType: "loop",
               }}
-              className='w-3 h-3 rounded-full bg-[#00f59b] shadow-[0_0_10px_#00f59b] mb-1'
+              className='w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-[#00f59b] shadow-[0_0_10px_#00f59b] mb-1'
             />
           </div>
         </a>
@@ -353,6 +353,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
       {/* Gradient blend from hero into overview section */}
       <div className='absolute bottom-0 left-0 w-full h-48 bg-gradient-to-b from-transparent to-[#050907] pointer-events-none z-10' />
     </section>
+
   );
 };
 

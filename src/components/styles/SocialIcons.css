@@ -233,3 +233,52 @@
     font-size: 16px;
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .icons-section {
+    padding: 0 10px 10px 10px;
+    gap: 6px;
+  }
+  .social-icons {
+    gap: 4px;
+    padding: 5px 8px;
+  }
+  .social-icons span {
+    width: 30px;
+    height: 30px;
+  }
+  .social-icons a {
+    font-size: 14px;
+  }
+  .resume-button {
+    padding: 6px 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    gap: 5px;
+  }
+  .resume-button span.resume-icon {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .icons-section {
+    padding: 0 8px 8px 8px;
+  }
+  .social-icons {
+    gap: 2px;
+    padding: 4px 6px;
+  }
+  .social-icons span {
+    width: 27px;
+    height: 27px;
+  }
+  .social-icons a {
+    font-size: 13px;
+  }
+  .resume-button {
+    padding: 5px 9px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+}
