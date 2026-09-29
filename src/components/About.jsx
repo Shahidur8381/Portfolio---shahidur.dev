@@ -145,7 +145,7 @@ const About = () => {
   }));
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-14 lg:-mr-12 xl:-mr-24 2xl:-mr-40">
+    <div className="flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-14">
 
       {/* ── LEFT COLUMN: Content ── */}
       <div className="flex-1 w-full lg:w-[64%]">
@@ -179,7 +179,7 @@ const About = () => {
         variants={fadeIn("left", "spring", 0.5, 1)}
         className="w-full lg:w-[36%] flex justify-center lg:justify-end mt-4 lg:mt-0"
       >
-        <div className="relative group w-[260px] xs:w-[280px] sm:w-[320px] lg:w-full max-w-full lg:max-w-[460px] aspect-[3/4.2]">
+        <div className="relative group w-[260px] xs:w-[280px] sm:w-[320px] lg:w-full max-w-full lg:max-w-[420px] aspect-[896/1200]">
           {/* Ambient glow behind portrait */}
           <div className="absolute -inset-2 sm:-inset-6 rounded-[32px] bg-gradient-to-br from-[#00f59b]/8 via-transparent to-[#10b981]/5 blur-xl sm:blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
 
@@ -198,7 +198,7 @@ const About = () => {
             <img
               src={resolveImageUrl(personal?.portrait) || "/images/portrait.jpg"}
               alt={`${personal?.name || "Shahidur Rahman"} — Full-Stack Developer & Product Engineer`}
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 ease-out"
+              className="w-full h-full object-cover object-center opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out"
               onError={(e) => {
                 // If photo doesn't exist or fails to load, fallback to local portrait
                 if (!e.target.src.includes("/images/portrait.jpg")) {
@@ -218,9 +218,8 @@ const About = () => {
               }}
             />
 
-            {/* Glass reflection & dark vignette to blend with background */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(5,9,7,0.75)_100%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-[#050907]/60 pointer-events-none" />
+            {/* Subtle glass reflection & subtle bottom shadow */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-[#050907]/40 pointer-events-none" />
           </div>
         </div>
       </motion.div>
