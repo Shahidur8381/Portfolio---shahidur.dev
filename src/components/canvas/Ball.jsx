@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -11,7 +13,8 @@ import {
 import CanvasLoader from "../Loader";
 
 const Ball = (props) => {
-  const [decal] = useTexture([props.imgUrl]);
+  const texturePath = props.imgUrl?.src || props.imgUrl;
+  const [decal] = useTexture([texturePath]);
 
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>

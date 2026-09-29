@@ -1,0 +1,332 @@
+{
+  "personal": {
+    "name": "Shahidur Rahman",
+    "title": "3D Developer & Engineer",
+    "email": "hello@shahidur.dev",
+    "salam": "Assalamu Alaikum",
+    "salamMeaning": "(peace be upon you)",
+    "roles": [
+      "An Engineer",
+      "A Developer",
+      "A Designer",
+      "A Teacher",
+      "A Tech Innovator"
+    ],
+    "aboutIntro": "I build reliable, scalable digital products from idea to production — combining modern full-stack development with backend engineering, AI/ML, and emerging Web3 technologies.",
+    "portrait": "https://api.shahidur.dev/uploads/1790424783233-portrait.jpg",
+    "resumeUrl": ""
+  },
+  "navLinks": [
+    {
+      "id": "about",
+      "title": "About"
+    },
+    {
+      "id": "education",
+      "title": "Education"
+    },
+    {
+      "id": "experience",
+      "title": "Experience"
+    },
+    {
+      "id": "projects",
+      "title": "Projects"
+    },
+    {
+      "id": "contact",
+      "title": "Contact"
+    }
+  ],
+  "what_i_built": [
+    {
+      "number": "01",
+      "title": "Full-Stack Development",
+      "description": "Modern web applications, APIs, databases, authentication, real-time systems, and production-ready platforms built for real-world use.",
+      "tech": "Next.js · React · Node.js · PostgreSQL",
+      "iconType": "fullstack",
+      "isPrimary": true
+    },
+    {
+      "number": "02",
+      "title": "AI & Machine Learning",
+      "description": "Building intelligent software with machine learning, AI APIs, data-driven systems, and practical automation.",
+      "tech": "Python · Machine Learning · AI APIs · Data",
+      "iconType": "ai",
+      "isPrimary": false
+    },
+    {
+      "number": "03",
+      "title": "Blockchain & Web3",
+      "description": "Exploring decentralized applications and blockchain technologies to build new approaches to digital products.",
+      "tech": "Blockchain · Web3 · Smart Contracts · dApps",
+      "iconType": "blockchain",
+      "isPrimary": false
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "title": "Secondary School Certificate",
+      "institution": "Kashira High School",
+      "result": "GPA 5.00",
+      "date": "Completed",
+      "icon": "🏫",
+      "description": "Built a strong foundation in science and mathematics, achieving top academic grades."
+    },
+    {
+      "id": 2,
+      "title": "Higher Secondary Certificate",
+      "institution": "Rajshahi Government City College",
+      "result": "GPA 5.00",
+      "date": "Completed",
+      "icon": "🏛️",
+      "description": "Advanced studies in science, preparing for a rigorous engineering curriculum."
+    },
+    {
+      "id": 3,
+      "title": "B.Sc in Computer Science & Engineering",
+      "institution": "Khulna University of Engineering & Technology",
+      "result": "3rd Year",
+      "expectedGraduationYear": 2027,
+      "date": "Present",
+      "icon": "🎓",
+      "image": "https://plain-apac-prod-public.komododecks.com/202609/26/5vbJbaAArxzvvoubEDKt/image.png",
+      "description": "Pursuing higher education in engineering, focusing on scalable software architecture, AI, and Web3 technologies."
+    }
+  ],
+  "experiences": [
+    {
+      "id": "flyrant-ai",
+      "title": "Backend AI Engineer Intern",
+      "company_name": "FlyRant AI",
+      "date": "Jul 2026 - Oct 2026",
+      "icon": "🤖",
+      "iconBg": "#050907",
+      "points": [
+        "Engineered backend systems to support highly scalable AI applications.",
+        "Optimized API response times and integrated advanced machine learning models into production.",
+        "Collaborated closely with cross-functional teams to deploy robust architecture."
+      ]
+    },
+    {
+      "id": "decodelab",
+      "title": "Software Engineer Intern",
+      "company_name": "Decodelab",
+      "date": "Feb 2026 - Jun 2026",
+      "icon": "💻",
+      "iconBg": "#050907",
+      "points": [
+        "Developed and maintained critical features for core software products.",
+        "Wrote clean, testable code and participated in agile development cycles.",
+        "Identified and resolved complex bugs, improving overall system stability."
+      ]
+    },
+    {
+      "id": "scraft-studio",
+      "title": "Full Stack Developer",
+      "company_name": "Scraft Studio (Freelance)",
+      "date": "Nov 2024 - Feb 2025",
+      "icon": "🛠️",
+      "iconBg": "#050907",
+      "points": [
+        "Led full-stack development for project-based client deliverables.",
+        "Built responsive, dynamic front-end interfaces using React and modern CSS.",
+        "Designed and implemented secure database schemas and backend logic."
+      ]
+    },
+    {
+      "id": "blockchain-fiverr",
+      "title": "Blockchain Developer",
+      "company_name": "Self-Employed (Fiverr)",
+      "date": "2024 - Present",
+      "icon": "⛓️",
+      "iconBg": "#050907",
+      "points": [
+        "Developed secure smart contracts and decentralized applications (dApps).",
+        "Audited Web3 protocols to ensure maximum security and efficiency.",
+        "Successfully delivered multiple complex blockchain projects to international clients."
+      ]
+    },
+    {
+      "id": "freelancer-revenue",
+      "title": "Independent Web3 & Full Stack Freelancer",
+      "company_name": "Upwork / Fiverr / Direct",
+      "date": "2024 - Present",
+      "icon": "💰",
+      "iconBg": "#050907",
+      "points": [
+        "Successfully delivered countless freelance projects focusing on Web3, Telegram bots, and premium websites.",
+        "Generated over $6,000+ in revenue through consistently high-quality client deliverables.",
+        "Managed entire product lifecycles from initial concept to deployment and handover."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "car-rent",
+      "name": "Car Rent",
+      "description": "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "tags": [
+        {
+          "name": "react",
+          "color": "blue-text-gradient"
+        },
+        {
+          "name": "mongodb",
+          "color": "green-text-gradient"
+        },
+        {
+          "name": "tailwind",
+          "color": "pink-text-gradient"
+        }
+      ],
+      "image": "/assets/carrent.png",
+      "source_code_link": "https://github.com/"
+    },
+    {
+      "id": "job-it",
+      "name": "Job IT",
+      "description": "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "tags": [
+        {
+          "name": "react",
+          "color": "blue-text-gradient"
+        },
+        {
+          "name": "restapi",
+          "color": "green-text-gradient"
+        },
+        {
+          "name": "scss",
+          "color": "pink-text-gradient"
+        }
+      ],
+      "image": "/assets/jobit.png",
+      "source_code_link": "https://github.com/"
+    },
+    {
+      "id": "trip-guide",
+      "name": "Trip Guide",
+      "description": "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "tags": [
+        {
+          "name": "nextjs",
+          "color": "blue-text-gradient"
+        },
+        {
+          "name": "supabase",
+          "color": "green-text-gradient"
+        },
+        {
+          "name": "css",
+          "color": "pink-text-gradient"
+        }
+      ],
+      "image": "/assets/tripguide.png",
+      "source_code_link": "https://github.com/"
+    }
+  ],
+  "testimonials": [
+    {
+      "testimonial": "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
+      "name": "Sara Lee",
+      "designation": "CFO",
+      "company": "Acme Co",
+      "image": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+      "testimonial": "I've never met a web developer who truly cares about their clients' success like Rick does.",
+      "name": "Chris Brown",
+      "designation": "COO",
+      "company": "DEF Corp",
+      "image": "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+      "testimonial": "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
+      "name": "Lisa Wang",
+      "designation": "CTO",
+      "company": "456 Enterprises",
+      "image": "https://randomuser.me/api/portraits/women/6.jpg"
+    }
+  ],
+  "socialLinks": [
+    {
+      "id": 1,
+      "platform": "github",
+      "label": "GitHub",
+      "url": "https://github.com/shahidur8381",
+      "icon": "github",
+      "displayInContact": true,
+      "displayInFooter": true,
+      "sortOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/shahidur8381",
+      "icon": "linkedin",
+      "displayInContact": true,
+      "displayInFooter": true,
+      "sortOrder": 2,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "platform": "telegram",
+      "label": "Telegram",
+      "url": "https://t.me/shahidur8381",
+      "icon": "telegram",
+      "displayInContact": true,
+      "displayInFooter": true,
+      "sortOrder": 3,
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "platform": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/shahidur8381",
+      "icon": "whatsapp",
+      "displayInContact": true,
+      "displayInFooter": true,
+      "sortOrder": 4,
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "platform": "leetcode",
+      "label": "LeetCode",
+      "url": "https://leetcode.com/shahidur8381",
+      "icon": "leetcode",
+      "displayInContact": false,
+      "displayInFooter": true,
+      "sortOrder": 5,
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "platform": "codeforces",
+      "label": "Codeforces",
+      "url": "https://codeforces.com/profile/shahidur8381",
+      "icon": "codeforces",
+      "displayInContact": false,
+      "displayInFooter": true,
+      "sortOrder": 6,
+      "isActive": true
+    },
+    {
+      "id": 7,
+      "platform": "email",
+      "label": "Email",
+      "url": "mailto:hello@shahidur.dev",
+      "icon": "email",
+      "displayInContact": false,
+      "displayInFooter": true,
+      "sortOrder": 7,
+      "isActive": true
+    }
+  ]
+}

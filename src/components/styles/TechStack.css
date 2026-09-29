@@ -1,0 +1,378 @@
+/* ===================================================
+   TECH STACK SECTION - MINIMAL PRODUCTION GREEN TECH
+   =================================================== */
+
+.techstack-section {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 0 70px 0;
+  z-index: 10;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header */
+.techstack-header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 45px auto;
+  padding: 0 24px;
+  position: relative;
+}
+
+.tech-sub-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background: rgba(0, 245, 155, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.techstack-header h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin: 0 0 14px 0;
+  color: #f8fafc;
+}
+
+.techstack-header p {
+  font-size: 15px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* Marquee Main Wrapper */
+.marquee-main-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 50px;
+}
+
+/* Individual Row Block */
+.marquee-row-block {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Row Distinguishable Header / Label */
+.marquee-row-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.row-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.row-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Distinguishable Green Tech Row Styles */
+.row-mint {
+  color: #94a3b8;
+  background: rgba(0, 245, 155, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+.row-mint .row-badge-dot {
+  background: #00f59b;
+  box-shadow: none;
+}
+
+.row-emerald {
+  color: #94a3b8;
+  background: rgba(16, 185, 129, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+.row-emerald .row-badge-dot {
+  background: #10b981;
+  box-shadow: none;
+}
+
+.row-teal {
+  color: #94a3b8;
+  background: rgba(45, 212, 191, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+.row-teal .row-badge-dot {
+  background: #2dd4bf;
+  box-shadow: none;
+}
+
+/* Horizontal Masked Viewport */
+.marquee-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  padding: 8px 0;
+}
+
+/* The Continuous Marquee Track */
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Pause scroll when hovering over the track */
+.marquee-track:hover {
+  animation-play-state: paused !important;
+}
+
+/* ROW 1: Left to Right */
+.marquee-track.scroll-right-1 {
+  animation: scrollRight 38s linear infinite;
+}
+
+/* ROW 2: Right to Left */
+.marquee-track.scroll-left-2 {
+  animation: scrollLeft 34s linear infinite;
+}
+
+/* ROW 3: Left to Right */
+.marquee-track.scroll-right-3 {
+  animation: scrollRight 40s linear infinite;
+}
+
+/* KEYFRAMES */
+@keyframes scrollLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================
+   MINIMAL PRODUCTION-READY TECH CARD
+   ========================================== */
+.tech-minimal-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 250px;
+  flex-shrink: 0;
+  background: rgba(11, 20, 15, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 14px;
+  padding: 12px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              background-color 0.25s ease;
+  box-sizing: border-box;
+}
+
+.tech-minimal-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--tech-color, #00f59b);
+  background: rgba(16, 32, 24, 0.85);
+  box-shadow: 0 10px 25px -6px rgba(0, 0, 0, 0.8),
+              0 0 20px -4px var(--tech-glow, rgba(0, 245, 155, 0.3));
+}
+
+/* Icon Box */
+.card-icon-box {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--tech-color, #00f59b);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tech-minimal-card:hover .card-icon-box {
+  transform: scale(1.1) rotate(-3deg);
+  border-color: var(--tech-color, #00f59b);
+  box-shadow: 0 0 16px var(--tech-glow, rgba(0, 245, 155, 0.3));
+}
+
+/* Card Text Info */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.tech-minimal-card:hover .card-title {
+  color: var(--tech-color, #ffffff);
+}
+
+.card-category {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   THREE STRATEGIC PILLARS ANCHOR CARDS
+   ========================================== */
+.tech-pillars {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.pillar-card {
+  background: linear-gradient(135deg, rgba(11, 22, 16, 0.8) 0%, rgba(7, 13, 10, 0.85) 100%);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 18px;
+  padding: 26px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  border-color: #00f59b;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 245, 155, 0.25);
+}
+
+.pillar-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: rgba(0, 245, 155, 0.08);
+  border: 1px solid rgba(0, 245, 155, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #00f59b;
+  margin-bottom: 16px;
+}
+
+.pillar-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.5px;
+}
+
+.pillar-card p {
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0 0 14px 0;
+}
+
+.pillar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pillar-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .techstack-section {
+    padding: 60px 0 50px 0;
+  }
+  .tech-minimal-card {
+    width: 220px;
+    padding: 10px 14px;
+  }
+  .marquee-row-header {
+    padding: 0 18px;
+  }
+  .tech-pillars {
+    padding: 0 16px;
+    grid-template-columns: 1fr;
+  }
+}

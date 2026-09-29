@@ -9,8 +9,34 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Thin fast cursor blink for typing effects */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hash-span {
@@ -34,19 +60,56 @@
 }
 
 .violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(
-    -90deg,
-    #804dee 0%,
-    rgba(60, 51, 80, 0) 100%
-  );
+  background: #00f59b;
+  background: linear-gradient(180deg, #00f59b 0%, #10b981 60%, rgba(16, 185, 129, 0) 100%);
+}
+
+.space-gradient {
+  background: linear-gradient(135deg, #00f59b 0%, #10b981 50%, #06b6d4 100%);
 }
 
 .green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: #00f59b;
+  background: linear-gradient(135deg, #00f59b 0%, #10b981 50%, #059669 100%);
+}
+
+.space-text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #00f59b 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cyan-text-gradient {
+  background: linear-gradient(135deg, #00f59b 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ultra-thin scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.18);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.18) transparent;
+}
+
+/* Timeline green accent glow */
+.vertical-timeline::before {
+  background: linear-gradient(180deg, #00f59b, #10b981, #059669) !important;
+  box-shadow: 0 0 15px rgba(0, 245, 155, 0.35) !important;
 }
 
 .orange-text-gradient {
@@ -201,4 +264,233 @@
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
+}
+
+/* ============================================================
+   SPACE BACKGROUND — Pure CSS Animated Sci-Fi / Space Theme
+   ============================================================ */
+
+/* --- Star Fields --- */
+.space-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+}
+
+.space-stars-sm {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 55% 65%, rgba(255,255,255,0.4) 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.3) 50%, transparent 100%),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 95% 50%, rgba(255,255,255,0.4) 50%, transparent 100%),
+    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background-size: 300px 300px;
+  animation: starDrift 60s linear infinite;
+}
+
+.space-stars-md {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 35%, rgba(0,245,155,0.6) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 15%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 60%, rgba(167,243,208,0.5) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 85%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 30% 90%, rgba(0,245,155,0.4) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 65% 40%, rgba(255,255,255,0.5) 50%, transparent 100%);
+  background-size: 400px 400px;
+  animation: starDrift 90s linear infinite reverse;
+}
+
+.space-stars-lg {
+  background-image:
+    radial-gradient(2px 2px at 15% 50%, rgba(0,245,155,0.8) 50%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 55% 25%, rgba(255,255,255,0.9) 50%, transparent 100%),
+    radial-gradient(2px 2px at 80% 70%, rgba(167,243,208,0.7) 50%, transparent 100%),
+    radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,0.6) 50%, transparent 100%);
+  background-size: 500px 500px;
+  animation: starTwinkle 4s ease-in-out infinite, starDrift 120s linear infinite;
+}
+
+@keyframes starDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50px, -30px); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- Nebula Clouds --- */
+.space-nebula {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.space-nebula-1 {
+  width: 60vw;
+  height: 60vw;
+  top: -20%;
+  right: -15%;
+  background: radial-gradient(ellipse, rgba(0, 245, 155, 0.12) 0%, transparent 65%);
+  filter: blur(80px);
+  animation: nebulaFloat1 20s ease-in-out infinite;
+}
+
+.space-nebula-2 {
+  width: 50vw;
+  height: 50vw;
+  bottom: -25%;
+  left: -10%;
+  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.1) 0%, transparent 65%);
+  filter: blur(100px);
+  animation: nebulaFloat2 25s ease-in-out infinite;
+}
+
+.space-nebula-3 {
+  width: 40vw;
+  height: 40vw;
+  top: 30%;
+  left: 40%;
+  background: radial-gradient(ellipse, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
+  filter: blur(90px);
+  animation: nebulaFloat3 30s ease-in-out infinite;
+}
+
+.space-nebula-4 {
+  width: 45vw;
+  height: 35vw;
+  top: 60%;
+  right: 20%;
+  background: radial-gradient(ellipse, rgba(0, 245, 155, 0.06) 0%, transparent 60%);
+  filter: blur(110px);
+  animation: nebulaFloat1 35s ease-in-out infinite reverse;
+}
+
+@keyframes nebulaFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, 30px) scale(1.08); }
+  66% { transform: translate(30px, -25px) scale(0.95); }
+}
+
+@keyframes nebulaFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(40px, -50px) scale(1.06); }
+  70% { transform: translate(-30px, 35px) scale(0.92); }
+}
+
+@keyframes nebulaFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(-40px, -35px) scale(1.12) rotate(5deg); }
+}
+
+/* --- Shooting Stars --- */
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 245, 155, 0.9), transparent);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.shooting-star-1 {
+  top: 15%;
+  left: 20%;
+  transform: rotate(-35deg);
+  animation: shootStar 8s 2s ease-in infinite;
+}
+
+.shooting-star-2 {
+  top: 35%;
+  right: 10%;
+  transform: rotate(-40deg);
+  animation: shootStar 12s 6s ease-in infinite;
+}
+
+.shooting-star-3 {
+  top: 55%;
+  left: 45%;
+  transform: rotate(-30deg);
+  animation: shootStar 15s 10s ease-in infinite;
+}
+
+@keyframes shootStar {
+  0% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  2% { opacity: 1; }
+  5% { opacity: 1; transform: rotate(-35deg) translateX(300px); }
+  6% { opacity: 0; transform: rotate(-35deg) translateX(400px); }
+  100% { opacity: 0; }
+}
+
+/* --- Hero Ambient Orbs (local to hero section) --- */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb-1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 245, 155, 0.35) 0%, transparent 70%);
+  top: -15%;
+  right: -10%;
+  animation: orbFloat1 12s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
+  bottom: -20%;
+  left: -10%;
+  animation: orbFloat2 15s ease-in-out infinite;
+}
+
+.hero-orb-3 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+  top: 35%;
+  left: 45%;
+  animation: orbFloat3 18s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(1.1); }
+  66% { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.05); }
+  66% { transform: translate(-20px, 25px) scale(0.9); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-35px, -30px) scale(1.15); }
+}
+
+/* Subtle noise grain overlay */
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }

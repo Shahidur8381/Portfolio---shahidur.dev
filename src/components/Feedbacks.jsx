@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
-import { testimonials } from "../constants";
+import { testimonials as fallbackTestimonials } from "../constants";
+import { usePortfolioData } from "../hooks/usePortfolioData";
+import { resolveImageUrl, DEFAULT_AVATAR_PLACEHOLDER } from "../utils/imageUrl";
 
 const FeedbackCard = ({
   index,
@@ -13,41 +17,66 @@ const FeedbackCard = ({
   designation,
   company,
   image,
-}) => (
-  <motion.div
-    variants={fadeIn("", "spring", index * 0.5, 0.75)}
-    className='bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full'
-  >
-    <p className='text-white font-black text-[48px]'>"</p>
+}) => {
+  const [imgSrc, setImgSrc] = useState(() =>
+    resolveImageUrl(image, DEFAULT_AVATAR_PLACEHOLDER)
+  );
 
-    <div className='mt-1'>
-      <p className='text-white tracking-wider text-[18px]'>{testimonial}</p>
+  useEffect(() => {
+    setImgSrc(resolveImageUrl(image, DEFAULT_AVATAR_PLACEHOLDER));
+  }, [image]);
 
-      <div className='mt-7 flex justify-between items-center gap-1'>
-        <div className='flex-1 flex flex-col'>
-          <p className='text-white font-medium text-[16px]'>
-            <span className='blue-text-gradient'>@</span> {name}
-          </p>
-          <p className='mt-1 text-secondary text-[12px]'>
-            {designation} of {company}
-          </p>
+  const handleImageError = () => {
+    if (imgSrc !== DEFAULT_AVATAR_PLACEHOLDER) {
+      setImgSrc(DEFAULT_AVATAR_PLACEHOLDER);
+    }
+  };
+
+  return (
+    <motion.div
+      variants={fadeIn("", "spring", index * 0.5, 0.75)}
+      className='bg-[#0b140f]/90 backdrop-blur-xl p-10 rounded-3xl xs:w-[320px] w-full border border-[#10b981]/25 hover:border-[#00f59b]/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(0,245,155,0.2)] transition-all duration-300'
+    >
+      <p className='text-transparent bg-clip-text bg-gradient-to-r from-[#00f59b] to-[#10b981] font-black text-[48px]'>"</p>
+
+      <div className='mt-1'>
+        <p className='text-white tracking-wider text-[17px] leading-relaxed'>{testimonial}</p>
+
+        <div className='mt-7 flex justify-between items-center gap-1'>
+          <div className='flex-1 flex flex-col'>
+            <p className='text-white font-medium text-[16px]'>
+              <span className='text-[#00f59b] font-bold'>@</span> {name}
+            </p>
+            <p className='mt-1 text-[#94a3b8] text-[12px]'>
+              {designation} of {company}
+            </p>
+          </div>
+
+          <div className='w-10 h-10 rounded-full overflow-hidden shrink-0 border-2 border-[#00f59b]/50 shadow-[0_0_10px_rgba(0,245,155,0.3)] bg-[#050907] flex items-center justify-center'>
+            <img
+              src={imgSrc || DEFAULT_AVATAR_PLACEHOLDER}
+              alt={`feedback_by-${name}`}
+              className='w-full h-full object-cover'
+              onError={handleImageError}
+            />
+          </div>
         </div>
-
-        <img
-          src={image}
-          alt={`feedback_by-${name}`}
-          className='w-10 h-10 rounded-full object-cover'
-        />
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const Feedbacks = () => {
+  const { testimonials: apiTestimonials } = usePortfolioData();
+  const testimonialList = (apiTestimonials && apiTestimonials.length > 0 ? apiTestimonials : fallbackTestimonials)
+    .filter((t) => t.showOnHomepage !== false);
+
+  if (!testimonialList.length) return null;
+
   return (
-    <div className={`mt-12 bg-black-100 rounded-[20px]`}>
+    <div className={`mt-12 bg-[#070d0a]/85 backdrop-blur-2xl rounded-[20px] border border-[#10b981]/25 shadow-[0_0_50px_rgba(0,245,155,0.08)]`}>
       <div
-        className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
+        className={`bg-gradient-to-r from-[#0b1711]/90 to-[#0e2118]/90 rounded-2xl ${styles.padding} min-h-[300px] border-b border-[#10b981]/20`}
       >
         <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>What others say</p>
@@ -55,8 +84,12 @@ const Feedbacks = () => {
         </motion.div>
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
-        {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
+        {testimonialList.map((testimonial, index) => (
+          <FeedbackCard
+            key={`testimonial-${testimonial.id || testimonial.name || index}`}
+            index={index}
+            {...testimonial}
+          />
         ))}
       </div>
     </div>
