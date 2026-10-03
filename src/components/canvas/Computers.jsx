@@ -4,6 +4,7 @@ import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
+import * as THREE from "three";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ deviceMode, onLoaded }) => {
@@ -66,7 +67,7 @@ const Computers = ({ deviceMode, onLoaded }) => {
   );
 };
 
-const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
+const ComputersCanvas = ({ onModelLoaded }) => {
   const [deviceMode, setDeviceMode] = useState(() => {
     if (typeof window !== "undefined") {
       const w = window.innerWidth;
@@ -95,7 +96,6 @@ const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
   }, []);
 
   const isMobile = deviceMode === "mobile";
-  const canInteract = !isMobile || isInteractive;
 
   return (
     <Canvas
@@ -104,17 +104,18 @@ const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
       dpr={[1, 2]}
       camera={{ position: [20, 2.5, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      className={`touch-pan-y ${canInteract ? "cursor-grab active:cursor-grabbing pointer-events-auto" : "pointer-events-none"}`}
-      style={{
-        pointerEvents: canInteract ? "auto" : "none",
-        touchAction: canInteract ? "none" : "pan-y",
-      }}
+      className='touch-pan-y cursor-grab active:cursor-grabbing'
+      style={{ touchAction: "pan-y" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          enabled={canInteract}
           enableZoom={false}
-          enableRotate={canInteract}
+          enableRotate={true}
+          touches={
+            isMobile
+              ? { ONE: null, TWO: THREE.TOUCH.ROTATE }
+              : { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN }
+          }
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           target={[0, -1.8, 0]}
