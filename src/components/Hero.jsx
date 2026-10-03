@@ -32,6 +32,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [roleText, setRoleText] = useState("");
   const [isDeletingRole, setIsDeletingRole] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   // If already seen in this session, immediately notify parent that intro is complete
   useEffect(() => {
@@ -317,15 +318,51 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
 
       {/* =========================================================
           3D COMPUTERS CANVAS (Only revealed when website is ready)
-          Positioned lower so it NEVER conflicts or overlaps with text
+          On mobile, interaction is controlled by isInteractive toggle;
+          on desktop (md and above), full interaction is always active.
           ========================================================= */}
       <div
         className={`w-full h-full transition-opacity duration-1000 ${
-          websiteReady ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+          isInteractive ? "pointer-events-auto" : "pointer-events-none md:pointer-events-auto"
+        } ${websiteReady ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       >
-        <ComputersCanvas />
+        <ComputersCanvas isInteractive={isInteractive} />
       </div>
+
+      {/* =========================================================
+          MOBILE ONLY: "Tap to Interact" / "Scroll Mode" Floating Toggle
+          ========================================================= */}
+      {websiteReady && (
+        <div className="absolute bottom-32 xs:bottom-28 left-1/2 -translate-x-1/2 z-30 md:hidden pointer-events-auto">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsInteractive((prev) => !prev);
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg active:scale-95 cursor-pointer backdrop-blur-xl border ${
+              isInteractive
+                ? "bg-[#00f59b] text-[#070a08] border-[#00f59b] shadow-[0_0_25px_rgba(0,245,155,0.7)] animate-pulse"
+                : "bg-[#070a08]/90 text-[#a7f3d0] border-[#10b981]/40 shadow-[0_4px_25px_rgba(0,0,0,0.8)] hover:border-[#00f59b]"
+            }`}
+            aria-label={isInteractive ? "Switch to page scroll mode" : "Enable 3D model interaction"}
+          >
+            {isInteractive ? (
+              <>
+                <span className="text-sm">📜</span>
+                <span>Scroll Mode</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#070a08]" />
+              </>
+            ) : (
+              <>
+                <span className="text-sm">🎮</span>
+                <span>Rotate 3D</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00f59b] shadow-[0_0_6px_#00f59b]" />
+              </>
+            )}
+          </button>
+        </div>
+      )}
 
       {/* Scroll Down Indicator (Only revealed when website is ready) */}
       <div

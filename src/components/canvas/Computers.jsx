@@ -66,7 +66,7 @@ const Computers = ({ deviceMode, onLoaded }) => {
   );
 };
 
-const ComputersCanvas = ({ onModelLoaded }) => {
+const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
   const [deviceMode, setDeviceMode] = useState("desktop");
 
   useEffect(() => {
@@ -87,6 +87,7 @@ const ComputersCanvas = ({ onModelLoaded }) => {
   }, []);
 
   const isMobile = deviceMode === "mobile";
+  const canInteract = !isMobile || isInteractive;
 
   return (
     <Canvas
@@ -95,13 +96,13 @@ const ComputersCanvas = ({ onModelLoaded }) => {
       dpr={[1, 2]}
       camera={{ position: [20, 2.5, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      className={`touch-pan-y ${isMobile ? "pointer-events-none" : "cursor-grab active:cursor-grabbing"}`}
-      style={{ touchAction: "pan-y" }}
+      className={`touch-pan-y ${canInteract ? "cursor-grab active:cursor-grabbing pointer-events-auto" : "pointer-events-none"}`}
+      style={{ touchAction: canInteract ? "none" : "pan-y" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
-          enableRotate={!isMobile}
+          enableRotate={canInteract}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           target={[0, -1.8, 0]}
