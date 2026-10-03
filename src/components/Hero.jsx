@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
@@ -18,6 +18,91 @@ const ROLES = fallbackPersonal?.roles || [
 const Hero = ({ onIntroComplete, websiteReady }) => {
   const { personal } = usePersonal();
   const currentRoles = personal?.roles?.length ? personal.roles : ROLES;
+  const heroRef = useRef(null);
+
+  // Cooperative touch gesture handling on mobile:
+  // 1 finger = 100% natural, frictionless page scroll (never calls preventDefault)
+  // 2 fingers = smooth 3D desktop model interaction (dispatches "rotate-hero-model")
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let touchStartX = 0;
+    let touchStartAngle = 0;
+    let isTwoFingerActive = false;
+
+    const onTouchStart = (e) => {
+      // Only process when user is in hero viewport (scrollY near top)
+      if (window.scrollY > window.innerHeight * 0.85) return;
+
+      if (e.touches.length === 2) {
+        isTwoFingerActive = true;
+        const p1 = e.touches[0];
+        const p2 = e.touches[1];
+        touchStartX = (p1.clientX + p2.clientX) / 2;
+        touchStartAngle = Math.atan2(p2.clientY - p1.clientY, p2.clientX - p1.clientX);
+      } else {
+        isTwoFingerActive = false;
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (window.scrollY > window.innerHeight * 0.85) return;
+
+      if (e.touches.length === 2) {
+        // Prevent page scroll and pinch-zoom only while 2 fingers are touching
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+
+        const p1 = e.touches[0];
+        const p2 = e.touches[1];
+        const currentX = (p1.clientX + p2.clientX) / 2;
+        const currentAngle = Math.atan2(p2.clientY - p1.clientY, p2.clientX - p1.clientX);
+
+        if (!isTwoFingerActive) {
+          isTwoFingerActive = true;
+          touchStartX = currentX;
+          touchStartAngle = currentAngle;
+          return;
+        }
+
+        const deltaX = currentX - touchStartX;
+        let deltaAngle = currentAngle - touchStartAngle;
+
+        // Wrap angle between -PI and PI
+        while (deltaAngle > Math.PI) deltaAngle -= 2 * Math.PI;
+        while (deltaAngle < -Math.PI) deltaAngle += 2 * Math.PI;
+
+        touchStartX = currentX;
+        touchStartAngle = currentAngle;
+
+        // Combine horizontal drag and rotational twist
+        const totalDelta = deltaX * 0.009 + deltaAngle * 0.9;
+
+        window.dispatchEvent(
+          new CustomEvent("rotate-hero-model", { detail: { delta: totalDelta } })
+        );
+      }
+    };
+
+    const onTouchEnd = (e) => {
+      if (e.touches.length < 2) {
+        isTwoFingerActive = false;
+      }
+    };
+
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchcancel", onTouchEnd);
+    };
+  }, []);
 
   // Intro Phases: "salam" | "clear_salam" | "typing_name" | "docked"
   const [phase, setPhase] = useState(() => {
@@ -149,6 +234,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
 
   return (
     <section
+      ref={heroRef}
       className='relative w-full h-[100dvh] min-h-[600px] mx-auto overflow-hidden'
       onClick={handleSkip}
       onTouchStart={phase !== "docked" ? handleSkip : undefined}
@@ -328,17 +414,21 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
       </div>
 
       {/* =========================================================
-          MOBILE ONLY: Subtle faded hint for 2-finger 3D rotation
+          MOBILE ONLY: Faded blinking note just bottom of the model
           ========================================================= */}
       {websiteReady && (
         <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 0.7, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute bottom-28 xs:bottom-24 left-1/2 -translate-x-1/2 z-20 pointer-events-none md:hidden flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#070a08]/75 backdrop-blur-md border border-[#10b981]/25 text-[10.5px] text-[#94a3b8] tracking-wide font-mono whitespace-nowrap select-none shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
+          initial={{ opacity: 0.25 }}
+          animate={{ opacity: [0.25, 0.85, 0.25] }}
+          transition={{
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-32 xs:bottom-28 left-1/2 -translate-x-1/2 z-20 pointer-events-none md:hidden flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-[#070a08]/85 backdrop-blur-md border border-[#10b981]/30 text-[10.5px] xs:text-[11.5px] text-[#94a3b8] tracking-wide font-mono whitespace-nowrap select-none shadow-[0_4px_16px_rgba(0,0,0,0.7)] text-center max-w-[92vw]"
         >
           <span className="text-[#00f59b] text-xs">✌️</span>
-          <span>Use 2 fingers to rotate 3D</span>
+          <span>Use 2 fingers to interact with the desktop</span>
         </motion.div>
       )}
 

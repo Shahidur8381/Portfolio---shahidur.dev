@@ -10,6 +10,7 @@ import CanvasLoader from "../Loader";
 const Computers = ({ deviceMode, onLoaded }) => {
   const computer = useGLTF("/desktop_pc/scene.gltf");
   const modelRef = useRef();
+  const lastUserInteractionRef = useRef(0);
 
   useEffect(() => {
     if (computer && onLoaded) {
@@ -17,11 +18,33 @@ const Computers = ({ deviceMode, onLoaded }) => {
     }
   }, [computer, onLoaded]);
 
+  // Listen to 2-finger touch rotation event on mobile
+  useEffect(() => {
+    const handleCustomRotate = (e) => {
+      const delta =
+        typeof e.detail?.delta === "number"
+          ? e.detail.delta
+          : typeof e.detail?.deltaX === "number"
+          ? e.detail.deltaX * 0.01
+          : 0;
+
+      if (modelRef.current && delta !== 0) {
+        lastUserInteractionRef.current = Date.now();
+        modelRef.current.rotation.y += delta;
+      }
+    };
+
+    window.addEventListener("rotate-hero-model", handleCustomRotate);
+    return () => window.removeEventListener("rotate-hero-model", handleCustomRotate);
+  }, []);
+
   // Rotate slowly with respect to Y-axis and add a floating effect
   useFrame((state, delta) => {
     if (modelRef.current) {
-      // Rotation
-      modelRef.current.rotation.y += delta * 0.18;
+      // Pause auto-rotation when user is interacting with 2 fingers (or for 1.2s after)
+      if (Date.now() - lastUserInteractionRef.current > 1200) {
+        modelRef.current.rotation.y += delta * 0.18;
+      }
       
       // Floating (sine wave on Y axis)
       modelRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.15;
@@ -95,7 +118,11 @@ const ComputersCanvas = ({ onModelLoaded }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = deviceMode === "mobile";
+  const isTouchDevice =
+    deviceMode === "mobile" ||
+    (typeof window !== "undefined" &&
+      ("ontouchstart" in window || (navigator && navigator.maxTouchPoints > 0)) &&
+      deviceMode === "tablet");
 
   return (
     <Canvas
@@ -104,18 +131,17 @@ const ComputersCanvas = ({ onModelLoaded }) => {
       dpr={[1, 2]}
       camera={{ position: [20, 2.5, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      className='touch-pan-y cursor-grab active:cursor-grabbing'
-      style={{ touchAction: "pan-y" }}
+      className={`touch-pan-y ${isTouchDevice ? "pointer-events-none" : "cursor-grab active:cursor-grabbing pointer-events-auto"}`}
+      style={{
+        pointerEvents: isTouchDevice ? "none" : "auto",
+        touchAction: "pan-y",
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
+          enabled={!isTouchDevice}
           enableZoom={false}
-          enableRotate={true}
-          touches={
-            isMobile
-              ? { ONE: null, TWO: THREE.TOUCH.ROTATE }
-              : { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN }
-          }
+          enableRotate={!isTouchDevice}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           target={[0, -1.8, 0]}
