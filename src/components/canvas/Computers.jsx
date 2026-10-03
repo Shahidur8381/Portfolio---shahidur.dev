@@ -67,12 +67,20 @@ const Computers = ({ deviceMode, onLoaded }) => {
 };
 
 const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
-  const [deviceMode, setDeviceMode] = useState("desktop");
+  const [deviceMode, setDeviceMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const w = window.innerWidth;
+      if (w < 768) return "mobile";
+      if (w < 1024) return "tablet";
+      return "desktop";
+    }
+    return "desktop";
+  });
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 640) {
+      if (width < 768) {
         setDeviceMode("mobile");
       } else if (width < 1024) {
         setDeviceMode("tablet");
@@ -97,10 +105,14 @@ const ComputersCanvas = ({ onModelLoaded, isInteractive = false }) => {
       camera={{ position: [20, 2.5, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
       className={`touch-pan-y ${canInteract ? "cursor-grab active:cursor-grabbing pointer-events-auto" : "pointer-events-none"}`}
-      style={{ touchAction: canInteract ? "none" : "pan-y" }}
+      style={{
+        pointerEvents: canInteract ? "auto" : "none",
+        touchAction: canInteract ? "none" : "pan-y",
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
+          enabled={canInteract}
           enableZoom={false}
           enableRotate={canInteract}
           maxPolarAngle={Math.PI / 2}

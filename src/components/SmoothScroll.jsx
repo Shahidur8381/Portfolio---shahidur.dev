@@ -15,7 +15,20 @@ export default function SmoothScroll() {
 
     if (prefersReducedMotion) return;
 
-    // Initialize Lenis with tuned momentum physics
+    // On mobile and touch screens, use pure native hardware scrolling.
+    // Virtual touch scroll hijacking causes scroll freezing and gesture conflicts on phones.
+    const isTouch =
+      "ontouchstart" in window ||
+      (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0) ||
+      window.innerWidth < 768;
+
+    if (isTouch) {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+      return;
+    }
+
+    // Initialize Lenis with tuned momentum physics for desktop
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential deceleration curve
@@ -23,7 +36,6 @@ export default function SmoothScroll() {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
       infinite: false,
     });
 

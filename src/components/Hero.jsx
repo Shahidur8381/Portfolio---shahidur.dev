@@ -150,8 +150,9 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
 
   return (
     <section
-      className='relative w-full h-screen mx-auto overflow-hidden'
+      className='relative w-full h-[100dvh] min-h-[600px] mx-auto overflow-hidden'
       onClick={handleSkip}
+      onTouchStart={phase !== "docked" ? handleSkip : undefined}
     >
       {/* Professional top-down gradient overlay: clean at top, blends into bg at bottom */}
       <div className='absolute inset-0 bg-gradient-to-b from-[#050907] via-[#050907]/70 to-transparent pointer-events-none z-[1]' />

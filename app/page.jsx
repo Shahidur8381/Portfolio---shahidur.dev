@@ -117,9 +117,19 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [websiteReady]);
 
-  // 3. Lock/unlock body scroll — only lock during actual fresh intro
+  // 3. Lock/unlock body scroll — only lock during actual fresh intro on desktop
   useEffect(() => {
     if (typeof document === "undefined") return;
+
+    // Never lock scroll on mobile devices so user can always swipe and scroll
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    if (isMobile) {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      if (window.__lenis) window.__lenis.start();
+      return;
+    }
+
     if (!websiteReady && !isReturnVisitRef.current) {
       document.body.style.overflow = "hidden";
       if (window.__lenis) window.__lenis.stop();
