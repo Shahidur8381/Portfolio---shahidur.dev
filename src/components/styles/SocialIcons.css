@@ -212,9 +212,9 @@
   }
   .social-icons {
     display: flex;
-    flex-direction: row;
-    gap: 6px;
-    padding: 6px 10px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 6px;
     border-radius: 9999px;
   }
   .social-icons span {
@@ -236,12 +236,13 @@
 
 @media only screen and (max-width: 480px) {
   .icons-section {
-    padding: 0 10px 10px 10px;
+    padding: 0 12px 12px 12px;
     gap: 6px;
   }
   .social-icons {
-    gap: 4px;
-    padding: 5px 8px;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 5px;
   }
   .social-icons span {
     width: 30px;
@@ -266,8 +267,9 @@
     padding: 0 8px 8px 8px;
   }
   .social-icons {
-    gap: 2px;
-    padding: 4px 6px;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 4px;
   }
   .social-icons span {
     width: 27px;

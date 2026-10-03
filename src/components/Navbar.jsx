@@ -80,16 +80,16 @@ const Navbar = () => {
           </p>
         </Link>
 
-        {/* MIDDLE: Email Button (Centered on Desktop & Mobile) */}
-        <div className='absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10 pointer-events-auto'>
+        {/* MIDDLE: Email Button (Centered on Desktop Only) */}
+        <div className='hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center z-10 pointer-events-auto'>
           <a 
             href="mailto:hello@shahidur.dev" 
-            className="text-[11px] xs:text-[12px] sm:text-[13px] lg:text-[14px] font-medium text-[#94a3b8] hover:text-[#00f59b] transition-all duration-300 flex items-center gap-1.5 xs:gap-2 hover:drop-shadow-[0_0_10px_rgba(0,245,155,0.6)] whitespace-nowrap px-2 xs:px-2.5 py-1 rounded-full bg-white/[0.04] border border-[#10b981]/20 sm:border-transparent sm:bg-transparent sm:p-0"
+            className="text-[13px] lg:text-[14px] font-medium text-[#94a3b8] hover:text-[#00f59b] transition-all duration-300 flex items-center gap-2 hover:drop-shadow-[0_0_10px_rgba(0,245,155,0.6)] whitespace-nowrap"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-4 sm:w-4 transition-colors duration-300 text-[#00f59b]/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-colors duration-300 text-[#00f59b]/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <span className="tracking-tight sm:tracking-normal">hello@shahidur.dev</span>
+            <span className="tracking-normal">hello@shahidur.dev</span>
           </a>
         </div>
 
@@ -111,13 +111,27 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Mobile Menu Toggle Button (Glassmorphism Pill) */}
-          <div className='md:hidden flex flex-1 justify-end items-center relative'>
+          {/* Mobile Right Container (Email + Hamburger Menu Toggle) */}
+          <div className='md:hidden flex items-center gap-2 relative'>
+            {/* Mobile Email Button: Positioned next to hamburger button, hidden when hamburger is open */}
+            {!toggle && (
+              <a 
+                href="mailto:hello@shahidur.dev" 
+                className="text-[11px] xs:text-[12px] font-medium text-[#94a3b8] hover:text-[#00f59b] transition-all duration-300 flex items-center gap-1.5 hover:drop-shadow-[0_0_10px_rgba(0,245,155,0.6)] whitespace-nowrap px-2.5 py-1.5 rounded-full bg-white/[0.04] border border-[#10b981]/20 active:scale-95"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transition-colors duration-300 text-[#00f59b]/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="tracking-tight">hello@shahidur.dev</span>
+              </a>
+            )}
+
+            {/* Hamburger Button (Glassmorphism Pill) */}
             <button
               type='button'
               aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={toggle}
-              className='w-10 h-10 rounded-xl bg-white/[0.04] backdrop-blur-md border border-[#10b981]/30 flex items-center justify-center text-white hover:border-[#00f59b] hover:shadow-[0_0_15px_rgba(0,245,155,0.3)] active:scale-95 transition-all duration-200 cursor-pointer'
+              className='w-10 h-10 rounded-xl bg-white/[0.04] backdrop-blur-md border border-[#10b981]/30 flex items-center justify-center text-white hover:border-[#00f59b] hover:shadow-[0_0_15px_rgba(0,245,155,0.3)] active:scale-95 transition-all duration-200 cursor-pointer shrink-0'
               onClick={() => setToggle(!toggle)}
             >
               <img
@@ -166,7 +180,7 @@ const Navbar = () => {
                 })}
               </ul>
 
-              {/* Mobile Quick Action Buttons inside drawer */}
+              {/* Mobile Quick Action inside drawer: Email only (Resume removed per requirement) */}
               <div className="mt-3 pt-3 border-t border-[#10b981]/20 flex flex-col gap-2">
                 <a
                   href="mailto:hello@shahidur.dev"
@@ -177,17 +191,6 @@ const Navbar = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <span className="truncate">hello@shahidur.dev</span>
-                </a>
-
-                <a
-                  href="/resume"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setToggle(false)}
-                  className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#00f59b]/15 border border-[#00f59b]/40 text-xs font-semibold text-[#00f59b] hover:bg-[#00f59b]/25 transition-all min-h-[40px]"
-                >
-                  <span>View Resume</span>
-                  <span className="text-xs">↗</span>
                 </a>
               </div>
             </div>

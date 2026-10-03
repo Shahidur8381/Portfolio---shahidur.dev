@@ -30,11 +30,12 @@ const Computers = ({ deviceMode, onLoaded }) => {
   const isMobile = deviceMode === "mobile";
   const isTablet = deviceMode === "tablet";
 
-  const scale = isMobile ? 0.48 : isTablet ? 0.56 : 0.62;
+  // Reduced scale on mobile so model sits gracefully below hero text without crowding
+  const scale = isMobile ? 0.36 : isTablet ? 0.52 : 0.62;
   const position = isMobile
-    ? [0, -3.8, -2.2]
+    ? [0, -3.2, -2.0]
     : isTablet
-    ? [1.2, -3.9, -1.8]
+    ? [1.2, -3.8, -1.8]
     : [3, -4.0, -1.5];
 
   return (
@@ -85,6 +86,8 @@ const ComputersCanvas = ({ onModelLoaded }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const isMobile = deviceMode === "mobile";
+
   return (
     <Canvas
       frameloop='always'
@@ -92,11 +95,13 @@ const ComputersCanvas = ({ onModelLoaded }) => {
       dpr={[1, 2]}
       camera={{ position: [20, 2.5, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      className="cursor-grab active:cursor-grabbing"
+      className={`touch-pan-y ${isMobile ? "pointer-events-none" : "cursor-grab active:cursor-grabbing"}`}
+      style={{ touchAction: "pan-y" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
+          enableRotate={!isMobile}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           target={[0, -1.8, 0]}

@@ -557,6 +557,8 @@ const PersonalGlobeCanvas = () => (
     dpr={[1, 2]}
     gl={{ preserveDrawingBuffer: true, antialias: true }}
     camera={{ fov: 50, near: 0.1, far: 200, position: [0, 0, 3.5] }}
+    className="touch-pan-y"
+    style={{ touchAction: "pan-y" }}
   >
     {/* Refined Studio Lighting - Rim-focused to prevent text glare */}
     <ambientLight intensity={0.55} />
