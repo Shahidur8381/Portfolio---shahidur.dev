@@ -427,7 +427,7 @@ const Hero = ({ onIntroComplete, websiteReady }) => {
           }}
           className="absolute bottom-32 xs:bottom-28 left-1/2 -translate-x-1/2 z-20 pointer-events-none md:hidden flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-[#070a08]/85 backdrop-blur-md border border-[#10b981]/30 text-[10.5px] xs:text-[11.5px] text-[#94a3b8] tracking-wide font-mono whitespace-nowrap select-none shadow-[0_4px_16px_rgba(0,0,0,0.7)] text-center max-w-[92vw]"
         >
-          <span className="text-[#00f59b] text-xs">✌️</span>
+          {/* <span className="text-[#00f59b] text-xs">✌️</span> */}
           <span>Use 2 fingers to interact with the desktop</span>
         </motion.div>
       )}
